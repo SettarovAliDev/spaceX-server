@@ -1,13 +1,11 @@
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 
-const corsOptions = {
-  origin: 'http://localhost:8081',
-};
-
-app.use(cors(corsOptions));
+// MIDDLEWARE
+app.use(cors());
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -15,6 +13,11 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+// RESET DATABASE
+// const dbReset = require('./app/utils/db-reset');
+// dbReset();
+
+// ROUTES
 app.get('/', (req, res) => {
   res.json({ message: ' welcome' });
 });
